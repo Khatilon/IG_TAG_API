@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>IG tag search</title>
+	<link rel="stylesheet" href="css/normalize.css" type="text/css" media="screen">	
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen">		   
+	<link rel="stylesheet" href="css/main.css" type="text/css" media="screen">	
+
+
+	<script src="js/jquery-3.5.1.min.js" type="text/javascript" charset="utf-8"></script>  
+	<!--Jquery must be include before the boostrap.js-->
+	<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script> <!--axios import-->
+	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+	<script src="js/all.js"></script>
+</head>
+<body>
+
+	<div id="app" @click="imgRemove">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 text-center imgTitle">
+					<div>
+						<h2>IG tag search</h2>
+					</div>
+					<div class="inputPanel">
+						<input type="text" v-model="searchItem" @keyup.enter="search">
+						<a href="#" @click="search">Search</a>
+					</div>
+
+					<div v-if="isLoading" class="loadingShow">
+						Please wait for search.
+					</div>
+				</div>
+			</div>
+			<div class="row imgPanel">
+				<div v-for="(data,index) in pictures" class="col-2 imgPicture">
+					<img :src="data" alt="" class="img-fluid" @click.stop="imgClick(index)">
+				</div>
+			</div>
+		</div>
+
+		<div class="imgShow">
+			<img :src="showImg" alt="none">
+		</div>
+
+	</div>
+
+	
+</body>
+</html>
